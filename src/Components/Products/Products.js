@@ -258,7 +258,7 @@ export default function Products() {
         </div>
         <div className="mb-3 d-flex order-now-btn justify-content-center">
           <Button
-            className="btn-esea-main"
+            className="font-bold btn-esea-main"
             onClick={(e) => {
               e.preventDefault();
               window.open('http://google.com');

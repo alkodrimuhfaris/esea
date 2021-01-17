@@ -22,7 +22,7 @@ const schema = Yup.object().shape({
     .min(1, 'Nama terlalu singkat!'),
   email: Yup.string()
     .email('Masukkan format email yang benar!')
-    .required('Email dibutuhkan'),
+    .required('Email dibutuhkan!'),
   phone: Yup.string()
     .required('Masukkan Nomor Telepon!')
     .matches(
@@ -112,10 +112,10 @@ export default function WorkingTogether() {
       </div>
       <Container className="pt-5 d-flex container-partner flex-column justify-content-center align-items-center">
         <div className="d-flex my-5 align-items-center partner-title justify-content-center">
-          <h4 className="kumbh-sans">Our Partners</h4>
+          <h4 className="kumbh-sans text-center">Our Partners</h4>
         </div>
 
-        <h2 className="kumbh-sans">Mulai Kerja Sama Dengan Kami</h2>
+        <h2 className="kumbh-sans text-center">Mulai Kerja Sama Dengan Kami</h2>
         <Formik
           initialValues={initialValue}
           validationSchema={schema}
@@ -135,7 +135,10 @@ export default function WorkingTogether() {
               setFieldValue,
             } = props;
             return (
-              <Form onSubmit={handleSubmit} className="montserrat partner-form">
+              <Form
+                onSubmit={handleSubmit}
+                className={`montserrat partner-form ${md ? 'w-100' : 'w-60'}`}
+              >
                 <FormGroup className="mt-1">
                   <Label for="name">Nama</Label>
                   <Input
