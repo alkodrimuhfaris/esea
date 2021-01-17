@@ -19,7 +19,7 @@ import useWindowDimension from '../../Helpers/useWindowDimension';
 import brandIcon from '../../Assets/Icons/eSeaIcon.png';
 
 export default function NavbarClient() {
-  const {width, md} = useWindowDimension();
+  const {width, sm} = useWindowDimension();
   const [openNavbar, setOpenNavbar] = useState(false);
   const history = useHistory();
 
@@ -35,12 +35,12 @@ export default function NavbarClient() {
   return (
     <Router>
       <Navbar
-        className="w-100 bg-white text-dark shadow justify-content-start sticky-top"
+        className="w-100 bg-white kumbh-sans text-dark shadow justify-content-start sticky-top"
         light
         expand="md"
       >
-        <Container>
-          <NavbarBrand style={{width: md ? '20%' : '15%'}}>
+        <Container className="d-flex justify-content-between align-items-center">
+          <NavbarBrand style={{width: sm ? '20%' : '15%'}}>
             <Button
               style={{
                 width: '100%',
@@ -54,7 +54,7 @@ export default function NavbarClient() {
             </Button>
           </NavbarBrand>
           <NavbarToggler
-            className="mr-auto"
+            className="mr-right"
             onClick={() => setOpenNavbar(!openNavbar)}
           />
           <Collapse className="mr-auto" isOpen={openNavbar} navbar>

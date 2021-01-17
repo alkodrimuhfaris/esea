@@ -5,14 +5,16 @@ function getWindowDimensions() {
   const {innerWidth: width, innerHeight: height} = window;
 
   const xs = width < 576;
-  const md = width < 768;
-  const lg = width < 992;
-  const xl = width < 1200;
+  const sm = width < 768;
+  const md = width < 992;
+  const lg = width < 1200;
+  const xl = width >= 1200;
 
   return {
     width,
     height,
     xs,
+    sm,
     md,
     lg,
     xl,
