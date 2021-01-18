@@ -32,6 +32,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -49,6 +50,7 @@
 .title-box {
   border-radius: 0 1.5em 1.5em 0;
   padding: 15px 40px;
+  margin: 50px 0;
 }
 
 .font-p5-em {
@@ -169,6 +171,8 @@
   transform: translate(0, -50%);
   border-radius: 300px;
   border: none;
+  max-height: 100vh;
+  width: 100%;
   width: 3em;
   height: 3em;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -210,7 +214,7 @@
 }
 
 .background-right-cover {
-  background-image: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   height: 100%;
   top: 50%;
   left: 50%;
@@ -218,7 +222,7 @@
 }
 
 .background-left-cover {
-  background-image: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   height: 100%;
   top: 50%;
   left: 50%;
@@ -233,6 +237,7 @@
   width: 100%;
   overflow: hidden;
 }
+
 .error-form {
   font-size: 0.8em;
   color: #EF476F;
@@ -250,4 +255,36 @@
 
 .container-partner {
   height: 100vh;
+}
+
+/*about us section*/
+.abtus {
+  width: 100%;
+  height: 100vh;
+}
+
+.abtus__title {
+  width: 80%;
+  margin: 0 auto 40px;
+}
+
+.abtus__img-cover {
+  width: 100%;
+}
+
+.abtus__img-cover::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(ellipse at center top, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 0)90%);
+
+}
+
+.abtus__img {
+  width: 100%;
+  min-height: 150px;
+  max-height: 90vh;
 }

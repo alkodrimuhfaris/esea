@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {
@@ -10,7 +11,7 @@ import {
   FormFeedback,
   Button,
 } from 'reactstrap';
-import {Formik, Field} from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import leftBackground from '../../Assets/Photos/leftBackground.png';
 import rightBackground from '../../Assets/Photos/rightBackground.png';
@@ -41,7 +42,7 @@ const schema = Yup.object().shape({
 });
 
 export default function WorkingTogether() {
-  const {width, xs, sm, md, lg, xl} = useWindowDimensions();
+  const { width, xs, sm, md, lg, xl } = useWindowDimensions();
   const [sideLength, setSideLength] = React.useState(0);
 
   React.useEffect(() => {
@@ -75,11 +76,11 @@ export default function WorkingTogether() {
       {/* left background image */}
       <div
         className="left-background position-absolute"
-        style={{width: sideLength}}
+        style={{ width: sideLength }}
       >
         <div className="d-flex justify-content-center align-items-center background-wrapper position-relative">
           <div
-            style={{width: sideLength + 2}}
+            style={{ width: sideLength + 2 }}
             className="background-left-cover position-absolute"
           >
             &nbsp;
@@ -94,11 +95,11 @@ export default function WorkingTogether() {
       {/* right background image */}
       <div
         className="right-background position-absolute"
-        style={{width: sideLength}}
+        style={{ width: sideLength }}
       >
         <div className="d-flex justify-content-center align-items-center background-wrapper position-relative">
           <div
-            style={{width: sideLength + 2}}
+            style={{ width: sideLength + 2 }}
             className="background-right-cover position-absolute"
           >
             &nbsp;
