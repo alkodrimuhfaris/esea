@@ -6,6 +6,7 @@ import Products from './Products/Products';
 import WorkingTogether from './WorkingTogether/WorkingTogether';
 import WeAreEsea from './WeAreEsea';
 import AboutUs from './AboutUs';
+import Footer from './Footer';
 
 export default function Main() {
   return (
@@ -17,6 +18,7 @@ export default function Main() {
         <Products />
         <WorkingTogether />
       </div>
+      <Footer />
     </>
   );
 }

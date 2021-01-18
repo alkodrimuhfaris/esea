@@ -1,3 +1,7 @@
+html {
+  font: 16px;
+}
+
 .parent {
   width: 100%;
   overflow: hidden;
@@ -270,4 +274,33 @@
 .underline {
   border-bottom: solid 2px #06D6A0;
   width: 5em
+}
+
+/*FOOTER*/
+
+.footer {
+  background: #333;
+  height: 100%;
+
+}
+
+.footer__row {
+  min-height: 200px;
+  width: 80vw;
+  margin: auto;
+}
+
+.footer__title,
+.footer__icon-text {
+  letter-spacing: .2rem;
+  color: white;
+}
+
+.footer__title {
+  font-size: 1.5rem;
+}
+
+.footer__icon-text {
+  color: white;
+  font-size: 1rem;
 }

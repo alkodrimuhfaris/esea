@@ -72,7 +72,7 @@ export default function WorkingTogether() {
   };
 
   return (
-    <div className="parent position-relative">
+    <div className="parent position-relative mb-5">
       {/* left background image */}
       <div
         className="left-background position-absolute"
