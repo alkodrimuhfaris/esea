@@ -9,6 +9,7 @@ export default function Main() {
   return (
     <>
       <NavBar />
+      <WeAreEsea />
       <div>
         <Products />
         <WorkingTogether />

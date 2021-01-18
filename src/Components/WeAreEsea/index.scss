@@ -1,0 +1,15 @@
+.crsl {
+    max-height: 80vh;
+    width: 100%;
+    background: red;
+
+    .carousel-inner {
+        height: 1442px;
+    }
+}
+
+.img {
+    object-fit: contain;
+    width: 100%;
+    display: block;
+}
