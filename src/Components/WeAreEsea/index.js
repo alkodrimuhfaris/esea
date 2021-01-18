@@ -74,7 +74,7 @@ export default function WeAreEsea() {
             activeIndex={activeIndex}
             next={next}
             previous={previous}
-            className="bg-dark"
+            className="mb-5"
         >
             <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
             {slides}
