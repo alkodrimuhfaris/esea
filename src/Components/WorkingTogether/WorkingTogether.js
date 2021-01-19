@@ -111,9 +111,9 @@ export default function WorkingTogether() {
         </div>
       </div>
       <Container className="pt-5 d-flex container-partner flex-column justify-content-center align-items-center">
-        <div className="d-flex my-5 align-items-center partner-title justify-content-center">
+        {/* <div className="d-flex my-5 align-items-center partner-title justify-content-center">
           <h4 className="kumbh-sans text-center">Our Partners</h4>
-        </div>
+        </div> */}
 
         <h2 className="kumbh-sans text-center">Mulai Kerja Sama Dengan Kami</h2>
         <Formik
