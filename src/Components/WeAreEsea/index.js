@@ -9,6 +9,7 @@ import {
     CarouselItem,
     CarouselControl,
     CarouselIndicators,
+    CarouselCaption
 } from 'reactstrap';
 import './index.scss';
 import crsl1 from '../../Assets/Photos/crsl1.jpg';
@@ -63,7 +64,7 @@ export default function WeAreEsea() {
                 className="crsl"
             >
                 <img src={item.src} alt={item.altText} className="img" />
-                {/* <CarouselCaption captionText={item.caption} captionHeader={item.caption} /> */}
+                <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
             </CarouselItem>
         );
     });

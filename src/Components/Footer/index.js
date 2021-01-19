@@ -54,7 +54,6 @@ export default function Footer() {
                     <button className="btn btn-block btn-esea-main mb-5" type="button">
                         Subscribe
                     </button>
-
                     <img src={brandIcon} className="img-fluid mb-2" alt="logo" />
                     <p className="footer__icon-text text-center"> Kami menyediakan ikan segar berkualitas</p>
                 </div>
