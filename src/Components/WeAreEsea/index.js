@@ -70,19 +70,19 @@ export default function WeAreEsea() {
     });
 
     return (
-
-        <Carousel
-            activeIndex={activeIndex}
-            next={next}
-            previous={previous}
-            className="mb-5"
-        >
-            <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-            {slides}
-            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-            <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-        </Carousel>
-
+        <header id="weareesea">
+            <Carousel
+                activeIndex={activeIndex}
+                next={next}
+                previous={previous}
+                className="mb-5"
+            >
+                <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                {slides}
+                <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+                <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+            </Carousel>
+        </header>
     );
 }
 

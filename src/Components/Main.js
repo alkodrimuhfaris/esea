@@ -21,11 +21,9 @@ export default function Main() {
       </ScrollToTop>
       <NavBar />
       <WeAreEsea />
+      <Products />
       <AboutUs />
-      <div>
-        <Products />
-        <WorkingTogether />
-      </div>
+      <WorkingTogether />
       <Footer />
     </>
   );

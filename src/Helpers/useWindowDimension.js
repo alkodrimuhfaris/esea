@@ -1,8 +1,9 @@
-import {useState, useEffect} from 'react';
+/* eslint-disable prettier/prettier */
+import { useState, useEffect } from 'react';
 
 function getWindowDimensions() {
   // eslint-disable-next-line no-undef
-  const {innerWidth: width, innerHeight: height} = window;
+  const { innerWidth: width, innerHeight: height } = window;
 
   const xs = width < 576;
   const sm = width < 768;
