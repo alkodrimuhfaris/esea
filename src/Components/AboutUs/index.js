@@ -28,10 +28,9 @@ const items = [
     }
 ];
 
-
 export default function AboutUs() {
     return (
-        <section className="abtus mb-5">
+        <section className="abtus mb-5" id="aboutus">
             <TitleBox sectionName="About Us" />
             <h2 className="abtus__title kumbh-sans text-center">
                 <span className="text-esea-main"> eSea</span> ada untuk mendekatkan nutrisi segar hasil laut kepada masyarakat Indonesia dengan penuh rasa cinta.
