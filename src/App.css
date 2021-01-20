@@ -300,3 +300,12 @@
   color: white;
   font-size: 1rem;
 }
+
+/* scroll to top*/
+
+.scroll__btn {
+  background-color: #06D6A0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
