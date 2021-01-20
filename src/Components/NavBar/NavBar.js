@@ -36,7 +36,7 @@ export default function NavBar() {
 
   return (
     <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-white">
-      <div className="container-fluid px-5">
+      <div className="container-fluid">
         <buton className="navbar__btn btn">
           <img src={brandIcon} className="img-fluid" alt="logo" />
         </buton>
