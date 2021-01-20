@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React from 'react';
@@ -72,7 +73,7 @@ export default function WorkingTogether() {
   };
 
   return (
-    <div className="parent position-relative mb-5">
+    <div className="parent position-relative mb-5" id="kerjasama">
       {/* left background image */}
       <div
         className="left-background position-absolute"
