@@ -112,7 +112,7 @@ export default function WorkingTogether() {
       >
         <div className="d-flex justify-content-center align-items-center background-wrapper position-relative">
           <div
-            style={{ width: sideLength + 2 }}
+            style={{ width: sideLength + 2, height: 'calc(100%+10px)' }}
             className="background-left-cover position-absolute"
           >
             &nbsp;

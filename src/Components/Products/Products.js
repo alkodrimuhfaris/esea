@@ -139,7 +139,7 @@ export default function Products() {
   };
 
   return (
-    <div className="parent mb-5" id="product">
+    <div className="parent mb-3" id="product">
       <div className="d-flex">
         <TitleBox sectionName="Our Products" />
       </div>

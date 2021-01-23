@@ -27,7 +27,7 @@ export default function NavBar() {
   return (
     <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-white">
       <div className="container-fluid">
-        <buton style={{width: md ? '20%' : '15%', padding: '0px'}} className="navbar__btn btn">
+        <buton style={{width: sm ? '20%' : '15%', padding: '0px', backgroundColor: 'rgba(0,0,0,0)'}} className="navbar__btn btn">
           <img src={brandIcon} className="img-fluid" alt="logo" />
         </buton>
         <button className="navbar-toggler" type="button" onClick={() => setOpenNavbar(!openNavbar)}>
