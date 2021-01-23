@@ -20,18 +20,11 @@ export default function Main() {
         </span>
       </ScrollToTop>
       <NavBar />
-<<<<<<< HEAD
-      <div className="w-100">
-        <Products />
-        <WorkingTogether />
-      </div>
-=======
       <WeAreEsea />
       <Products />
       <AboutUs />
       <WorkingTogether />
       <Footer />
->>>>>>> 61534efc288508a61c77a2360f37dbe2b8baa497
     </>
   );
 }
