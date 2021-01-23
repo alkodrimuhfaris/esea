@@ -14,25 +14,28 @@ import './index.scss';
 import crsl1 from '../../Assets/Photos/crsl1.jpg';
 import crsl2 from '../../Assets/Photos/crsl2.jpg';
 import crsl3 from '../../Assets/Photos/crsl3.jpg';
+import crsl4 from '../../Assets/Photos/crsl4.jpg';
 
 const items = [
   {
     src: crsl1,
-    altText: 'Bergerak Bersama',
-    caption:
-      'Bergerak bersama nelayan untuk akses hasil laut yang mudah dijangkau oleh seluruh masyarakat Indonesia.',
+    altText: 'integritas-keteladanan',
+    caption: 'Integritas dan Keteladanan yang Tinggi.',
   },
   {
     src: crsl2,
-    altText: 'Inspirasi Sejak Dini',
-    caption:
-      'Menginspirasi seluruh masyarakat Indonesia agar senantiasa mengonsumsi hasil laut yang penuh nutrisi dan berkembang bersama anak-anak bangsa',
+    altText: 'pelayanan-terbaik',
+    caption: 'Melayani Dengan Pelayanan Terbaik dan Penuh Tanggung Jawab',
   },
   {
     src: crsl3,
-    altText: 'Berkembang dan Berinovasi',
-    caption:
-      'Mengembangkan bisnis bersama para mitra nelayan/petambak ikan dengan penuh inovasi',
+    altText: 'inovatif-ekspansif',
+    caption: 'Inovatif, Ekpansif, dan Penuh Kebaruan',
+  },
+  {
+    src: crsl4,
+    altText: 'kemitraan-progresif',
+    caption: 'Kemitraan yang Progresif',
   },
 ];
 
@@ -66,10 +69,7 @@ export default function WeAreEsea() {
         className="crsl"
       >
         <img src={item.src} alt={item.altText} className="img" />
-        <CarouselCaption
-          captionText={item.caption}
-          captionHeader={item.altText}
-        />
+        <CarouselCaption captionText={item.caption} />
       </CarouselItem>
     );
   });
