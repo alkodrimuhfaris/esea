@@ -1,36 +1,43 @@
 import React from 'react';
-import {Container, Button} from 'reactstrap';
+import {Container, Button, Spinner} from 'reactstrap';
 import {
   WidgetsOutlined,
   LocalMallOutlined,
   StoreMallDirectoryOutlined,
 } from '@material-ui/icons';
 import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
+import {useSelector, useDispatch} from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import useWindowDimension from '../../Helpers/useWindowDimension';
 import responsive from '../../Helpers/responsiveCarousel';
 import 'react-multi-carousel/lib/styles.css';
-import ProductCard from '../Components/ProductCard';
+import ProductCard from '../ComponentHelpers/ProductCard';
+import actions from '../../redux/actions/index';
 
 export default function Products() {
+  const dispatch = useDispatch();
   const {md} = useWindowDimension();
+  const categoriesData = useSelector((state) => state.getAllCategories.data);
+  const productsPageInfo = useSelector(
+    (state) => state.getAllProducts.pageInfo,
+  );
+  const categoriesPageInfo = useSelector(
+    (state) => state.getAllCategories.pageInfo,
+  );
+  const getCategoryDetails = useSelector((state) => state.getCategoryDetails);
+  const productData = useSelector((state) => state.getCategoryDetails.products);
   const [selected, setSelected] = React.useState(0);
-
-  React.useEffect(() => {
-    console.log(selected);
-  }, [selected]);
-
-  const iconDesc = [
+  const [iconDesc, setIconDesc] = React.useState([
     {
       name: 'Kategori',
-      count: 3,
+      count: 0,
       icon: (size = 30) => (
         <WidgetsOutlined color="grey" style={{fontSize: size}} />
       ),
     },
     {
       name: 'Produk',
-      count: 20,
+      count: 0,
       icon: (size = 30) => (
         <LocalMallOutlined color="grey" style={{fontSize: size}} />
       ),
@@ -42,106 +49,44 @@ export default function Products() {
         <StoreMallDirectoryOutlined color="grey" style={{fontSize: size}} />
       ),
     },
-  ];
+  ]);
+  const initialMount = React.useRef(true);
 
-  const linkDesc = [
-    {
-      name: 'Ikan',
-      actions: (index) => {
-        setSelected(index);
-      },
-    },
-    {
-      name: 'Udang',
-      actions: (index) => {
-        setSelected(index);
-      },
-    },
-    {
-      name: 'Cumi',
-      actions: (index) => {
-        setSelected(index);
-      },
-    },
-  ];
+  React.useEffect(() => {
+    dispatch(actions.categoriesActions.getCategories());
+    dispatch(actions.productsActions.getCategories());
+  }, []);
 
-  const productData = [
-    {
-      id: 1,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 2,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 3,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 11,
-      sold: 91,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 4,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 5,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 6,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-  ];
+  React.useEffect(() => {
+    if (initialMount.current) {
+      if (categoriesData.length) {
+        setSelected(categoriesData[0].id);
+        initialMount.current = false;
+      }
+    }
+  }, [categoriesData]);
 
-  // const pageInfo = {
-  //   count: 3,
-  //   pages: 4,
-  //   currentPage: 1,
-  //   dataPerPage: 3,
-  //   nextLink: null,
-  //   prefLink: null,
-  // };
+  React.useEffect(() => {
+    if (selected) {
+      dispatch(actions.categoriesActions.getCategoriesDetail(selected));
+    }
+  }, [selected]);
+
+  React.useEffect(() => {
+    const newIconDesc = [...iconDesc];
+    if (
+      Object.keys(categoriesPageInfo).length ||
+      Object.keys(productsPageInfo).length
+    ) {
+      if (Object.keys(categoriesPageInfo).length) {
+        newIconDesc[0].count = categoriesPageInfo.count;
+      }
+      if (Object.keys(productsPageInfo).length) {
+        newIconDesc[1].count = productsPageInfo.count;
+      }
+      setIconDesc(newIconDesc);
+    }
+  }, [categoriesPageInfo, productsPageInfo]);
 
   const LeftArrow = ({onClick}) => (
     <Button
@@ -223,38 +168,43 @@ export default function Products() {
         </div>
         {/* link for selecting categories */}
         <div className="d-flex justify-content-center align-items-center my-5">
-          {linkDesc.map((item, index) => (
+          {categoriesData.map((item, index) => (
             <Button
-              onClick={() => item.actions(index)}
+              onClick={() => setSelected(item.id)}
               className={`categories-btn ${
-                index === selected ? 'btn-esea-main ' : 'btn-light '
+                item.id === selected ? 'btn-esea-main ' : 'btn-light '
               } ${index === 0 ? '' : 'ml-3'}`}
             >
               <text className={md ? 'font-1-em' : 'font-1p2-em'}>
-                {item.name}
+                {item.categoryName}
               </text>
             </Button>
           ))}
         </div>
         {/* container for product */}
         <div className="mx-auto carousel-wrapper">
-          {productData.length ? (
-            <Carousel
-              showDots
-              responsive={responsive}
-              keyBoardControl
-              customTransition="all .5"
-              transitionDuration={500}
-              removeArrowOnDeviceType="mobile"
-              customDot={<CustomDot />}
-              customLeftArrow={<LeftArrow />}
-              customRightArrow={<RightArrow />}
-            >
-              {productData.map((item) => (
-                <ProductCard item={item} />
-              ))}
-            </Carousel>
-          ) : null}
+          <Carousel
+            showDots
+            responsive={responsive}
+            keyBoardControl
+            customTransition="all .5"
+            transitionDuration={500}
+            removeArrowOnDeviceType="mobile"
+            customDot={<CustomDot />}
+            customLeftArrow={<LeftArrow />}
+            customRightArrow={<RightArrow />}
+          >
+            {getCategoryDetails.pending || !productData.length
+              ? [
+                  <div
+                    className="d-flex justify-content-center align-items-center w-100"
+                    style={{height: '10em'}}
+                  >
+                    <Spinner color="esea-main" />
+                  </div>,
+                ]
+              : productData.map((item) => <ProductCard item={item} />)}
+          </Carousel>
         </div>
         <div className="mb-3 d-flex order-now-btn justify-content-center">
           <Button

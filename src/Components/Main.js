@@ -9,7 +9,7 @@ export default function Main() {
   return (
     <>
       <NavBar />
-      <div>
+      <div className="w-100">
         <Products />
         <WorkingTogether />
       </div>

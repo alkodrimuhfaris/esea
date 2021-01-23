@@ -7,14 +7,17 @@ import {
   FormGroup,
   Label,
   Col,
-  FormFeedback,
   Button,
 } from 'reactstrap';
 import {Formik, Field} from 'formik';
 import * as Yup from 'yup';
+import {useDispatch, useSelector} from 'react-redux';
 import leftBackground from '../../Assets/Photos/leftBackground.png';
 import rightBackground from '../../Assets/Photos/rightBackground.png';
 import useWindowDimensions from '../../Helpers/useWindowDimension';
+import actions from '../../redux/actions';
+import ModalLoading from '../ComponentHelpers/ModalLoading';
+import ModalConfirm from '../ComponentHelpers/ModalConfirm';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -32,7 +35,7 @@ const schema = Yup.object().shape({
     ),
   partner: Yup.string('Pilih jenis mitra!').test(
     'partner-test',
-    'Pilih jenis mitra yang benar!',
+    'Pilih salah satu dari kategori mitra!',
     (value) => {
       value = value === 'Nelayan' || value === 'Penjual';
       return value;
@@ -41,8 +44,13 @@ const schema = Yup.object().shape({
 });
 
 export default function WorkingTogether() {
+  const dispatch = useDispatch();
+  const postRegistration = useSelector((state) => state.postRegistration);
   const {width, xs, sm, md, lg, xl} = useWindowDimensions();
   const [sideLength, setSideLength] = React.useState(0);
+  const [openNotif, setOpenNotif] = React.useState(false);
+  const [propsNotif, setPropsNotif] = React.useState({});
+  const [resettingForm, setResettingForm] = React.useState({reset: () => {}});
 
   React.useEffect(() => {
     let side = sideLength;
@@ -60,18 +68,41 @@ export default function WorkingTogether() {
     setSideLength(side);
   }, [width]);
 
+  React.useEffect(() => {
+    if (postRegistration.success || postRegistration.error) {
+      setPropsNotif({
+        title: postRegistration.success ? 'Sukses!' : 'Gagal!',
+        content: postRegistration.message,
+        useOneBtn: true,
+        confirm: () => {
+          setOpenNotif(false);
+          dispatch(actions.registrationsActions.clearNotifRegistration());
+          if (postRegistration.success) {
+            resettingForm.reset();
+          }
+        },
+      });
+      setOpenNotif(true);
+    }
+  }, [postRegistration.pending]);
+
   const submit = (values) => {
-    console.log(values);
+    dispatch(actions.registrationsActions.postRegistration(values));
   };
 
   const initialValue = {
     name: '',
     email: '',
     phone: '',
+    partner: '',
   };
 
   return (
     <div className="parent position-relative">
+      <div className="w-100">
+        <ModalLoading modalOpen={postRegistration.pending} />
+        <ModalConfirm modalOpen={openNotif} {...propsNotif} />
+      </div>
       {/* left background image */}
       <div
         className="left-background position-absolute"
@@ -120,8 +151,9 @@ export default function WorkingTogether() {
           initialValues={initialValue}
           validationSchema={schema}
           validateOnBlur
-          onSubmit={(values) => {
+          onSubmit={(values, {resetForm}) => {
             submit(values);
+            setResettingForm({reset: resetForm});
           }}
         >
           {(props) => {
@@ -183,7 +215,7 @@ export default function WorkingTogether() {
                     tag={Field}
                     value={values.phone}
                     onChange={handleChange}
-                    type="text"
+                    type="tel"
                     name="phone"
                     id="phone"
                     placeholder="Telepon"
@@ -224,8 +256,12 @@ export default function WorkingTogether() {
                 </Col>
 
                 <div className="my-3 d-flex justify-content-center">
-                  <Button className="font-bold btn-esea-main" type="submit">
-                    Kirim
+                  <Button
+                    className="border-0 rounded-pill font-bold py-2 px-5"
+                    color="esea-main"
+                    type="submit"
+                  >
+                    <text>Kirim</text>
                   </Button>
                 </div>
               </Form>
