@@ -25,6 +25,7 @@ module.exports = {
       },
     ],
     indent: 'off',
+    'no-console': 'error',
     'react/jsx-indent': 'off',
     'react/jsx-indent-props': 'off',
     'react/jsx-curly-newline': 'off',
