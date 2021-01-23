@@ -6,9 +6,9 @@ export default function ModalConfirm({
   title = 'Warning',
   content = 'Are you sure want to delete this?',
   confirm = () => {},
-  confirmTxt = 'Yes',
+  confirmTxt = 'Ok',
   close = () => {},
-  closeTxt = 'No',
+  closeTxt = 'Tidak',
   useOneBtn = false,
 }) {
   const [openThis, setThisOpen] = React.useState(false);
