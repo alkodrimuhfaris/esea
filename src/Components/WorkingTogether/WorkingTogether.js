@@ -100,7 +100,7 @@ export default function WorkingTogether() {
   };
 
   return (
-    <div className="parent position-relative mb-5" id="kerjasama">
+    <div className="parent position-relative" id="kerjasama">
       <div className="w-100">
         <ModalLoading modalOpen={postRegistration.pending} />
         <ModalConfirm modalOpen={openNotif} {...propsNotif} />

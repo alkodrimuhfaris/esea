@@ -5,7 +5,7 @@ export default function ProductCard({item}) {
   const percentage = Math.round((item.sold / (item.sold + item.stocks)) * 100);
   return (
     <div className="px-1 pt-1 product-card-wrapper">
-      <div className="product-card">
+      <div className="product-card product-card-shadow">
         <div className="w-100 product-image-wrapper">
           <img
             src={process.env.REACT_APP_URL_BACKEND + item.picture}

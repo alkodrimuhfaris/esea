@@ -171,7 +171,7 @@ export default function Products() {
           {categoriesData.map((item, index) => (
             <Button
               onClick={() => setSelected(item.id)}
-              className={`categories-btn ${
+              className={`categories-btn categories-btn-shadow ${
                 item.id === selected ? 'btn-esea-main ' : 'btn-light '
               } ${index === 0 ? '' : 'ml-3'}`}
             >
