@@ -54,7 +54,7 @@ export default function Products() {
     },
   ]);
   const initialMount = React.useRef(true);
-  const initialMountProducts = React.useRef(true);
+  const [initialMountProducts, setInitialMountProducts] = React.useState(true);
   const initialMountProducts2 = React.useRef(true);
 
   React.useEffect(() => {
@@ -95,14 +95,13 @@ export default function Products() {
 
   React.useEffect(() => {
     if (initialMountProducts2.current && productData.length) {
-      initialMountProducts.current = false;
-      initialMountProducts2.current = false;
+      setInitialMountProducts(false);
     }
   }, [productData]);
 
   React.useEffect(() => {
     if (!initialMountProducts2.current) {
-      initialMountProducts.current = getCategoryDetails.pending;
+      setInitialMountProducts(getCategoryDetails.pending);
     }
   }, [getCategoryDetails.pending]);
 
@@ -199,7 +198,7 @@ export default function Products() {
         </div>
         {/* container for product */}
         <div className="mx-auto carousel-wrapper">
-          {getCategoryDetails.pending || initialMountProducts.current ? (
+          {getCategoryDetails.pending || initialMountProducts ? (
             <div
               className="d-flex justify-content-center align-items-center w-100"
               style={{height: '10em'}}
