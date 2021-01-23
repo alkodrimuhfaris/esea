@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {
@@ -9,7 +11,7 @@ import {
   Col,
   Button,
 } from 'reactstrap';
-import {Formik, Field} from 'formik';
+import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import {useDispatch, useSelector} from 'react-redux';
 import leftBackground from '../../Assets/Photos/leftBackground.png';
@@ -98,7 +100,7 @@ export default function WorkingTogether() {
   };
 
   return (
-    <div className="parent position-relative">
+    <div className="parent position-relative mb-5" id="kerjasama">
       <div className="w-100">
         <ModalLoading modalOpen={postRegistration.pending} />
         <ModalConfirm modalOpen={openNotif} {...propsNotif} />
@@ -106,11 +108,11 @@ export default function WorkingTogether() {
       {/* left background image */}
       <div
         className="left-background position-absolute"
-        style={{width: sideLength}}
+        style={{ width: sideLength }}
       >
         <div className="d-flex justify-content-center align-items-center background-wrapper position-relative">
           <div
-            style={{width: sideLength + 2}}
+            style={{ width: sideLength + 2 }}
             className="background-left-cover position-absolute"
           >
             &nbsp;
@@ -125,11 +127,11 @@ export default function WorkingTogether() {
       {/* right background image */}
       <div
         className="right-background position-absolute"
-        style={{width: sideLength}}
+        style={{ width: sideLength }}
       >
         <div className="d-flex justify-content-center align-items-center background-wrapper position-relative">
           <div
-            style={{width: sideLength + 2}}
+            style={{ width: sideLength + 2 }}
             className="background-right-cover position-absolute"
           >
             &nbsp;

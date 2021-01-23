@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+/* eslint-disable import/extensions */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {Container, Button, Spinner} from 'reactstrap';
 import {
@@ -13,6 +17,7 @@ import responsive from '../../Helpers/responsiveCarousel';
 import 'react-multi-carousel/lib/styles.css';
 import ProductCard from '../ComponentHelpers/ProductCard';
 import actions from '../../redux/actions/index';
+import TitleBox from '../TitleBox';
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -32,21 +37,21 @@ export default function Products() {
       name: 'Kategori',
       count: 0,
       icon: (size = 30) => (
-        <WidgetsOutlined color="grey" style={{fontSize: size}} />
+        <WidgetsOutlined color="grey" style={{ fontSize: size }} />
       ),
     },
     {
       name: 'Produk',
       count: 0,
       icon: (size = 30) => (
-        <LocalMallOutlined color="grey" style={{fontSize: size}} />
+        <LocalMallOutlined color="grey" style={{ fontSize: size }} />
       ),
     },
     {
       name: 'Mitra',
       count: 22,
       icon: (size = 30) => (
-        <StoreMallDirectoryOutlined color="grey" style={{fontSize: size}} />
+        <StoreMallDirectoryOutlined color="grey" style={{ fontSize: size }} />
       ),
     },
   ]);
@@ -88,7 +93,7 @@ export default function Products() {
     }
   }, [categoriesPageInfo, productsPageInfo]);
 
-  const LeftArrow = ({onClick}) => (
+  const LeftArrow = ({ onClick }) => (
     <Button
       onClick={() => onClick()}
       color="light"
@@ -98,7 +103,7 @@ export default function Products() {
     </Button>
   );
 
-  const RightArrow = ({onClick}) => (
+  const RightArrow = ({ onClick }) => (
     <Button
       onClick={() => onClick()}
       color="light"
@@ -108,8 +113,8 @@ export default function Products() {
     </Button>
   );
 
-  const CustomDot = ({onClick, ...rest}) => {
-    const {active} = rest;
+  const CustomDot = ({ onClick, ...rest }) => {
+    const { active } = rest;
     // const carouselItems = productData.map((item) => (
     //   <ProductCard item={item} />
     // ));
@@ -125,9 +130,8 @@ export default function Products() {
 
       <Button
         onClick={() => onClick()}
-        className={`dot-button mx-1 mb-1 ${
-          active ? 'dot-active' : 'dot-inactive'
-        }`}
+        className={`dot-button mx-1 mb-1 ${active ? 'dot-active' : 'dot-inactive'
+          }`}
       >
         &nbsp;
       </Button>
@@ -135,11 +139,9 @@ export default function Products() {
   };
 
   return (
-    <div className="parent pt-5">
+    <div className="parent mb-5" id="product">
       <div className="d-flex">
-        <div className="title-box bg-esea-secondary">
-          <text className="kumbh-sans font-1p5-em">Our Products</text>
-        </div>
+        <TitleBox sectionName="Our Products" />
       </div>
       <Container className="montserrat mx-auto py-3">
         {/* description */}
@@ -149,16 +151,14 @@ export default function Products() {
               {item.icon(!md ? 45 : 30)}
               <div className="d-flex flex-column ml-2">
                 <text
-                  className={`montserrat height-0 ${
-                    !md ? 'font-1p5-em' : 'font-1p2-em'
-                  }`}
+                  className={`montserrat height-0 ${!md ? 'font-1p5-em' : 'font-1p2-em'
+                    }`}
                 >
                   {item.count}
                 </text>
                 <text
-                  className={`montserrat height-0 ${
-                    !md ? 'font-p75-em' : 'font-p5-em'
-                  }`}
+                  className={`montserrat height-0 ${!md ? 'font-p75-em' : 'font-p5-em'
+                    }`}
                 >
                   {item.name}
                 </text>
@@ -211,7 +211,7 @@ export default function Products() {
             className="font-bold btn-esea-main"
             onClick={(e) => {
               e.preventDefault();
-              window.open('http://google.com');
+              window.open('http://linktr.ee/eseaindonesia');
             }}
           >
             PESAN SEKARANG
