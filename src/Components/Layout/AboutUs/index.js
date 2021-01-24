@@ -6,12 +6,13 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 
 import React from 'react';
-import TitleBox from '../TitleBox';
-import abtUsImg from '../../Assets/Photos/abtUs.png';
-import abtUsCard1 from '../../Assets/Photos/abtUsCard1.png';
-import abtUsCard2 from '../../Assets/Photos/abtUsCard2.png';
-import abtUsCard3 from '../../Assets/Photos/abtUsCard3.png';
-import useWindowDimension from '../../Helpers/useWindowDimension';
+import TitleBox from '../../ComponentHelpers/TitleBox';
+import abtUsImg from '../../../Assets/Photos/abtUs.png';
+import abtUsCard1 from '../../../Assets/Photos/abtUsCard1.png';
+import abtUsCard2 from '../../../Assets/Photos/abtUsCard2.png';
+import abtUsCard3 from '../../../Assets/Photos/abtUsCard3.png';
+import useWindowDimension from '../../../Helpers/useWindowDimension';
+import "./index.scss";
 
 const items = [
   {
@@ -32,7 +33,7 @@ const items = [
 ];
 
 export default function AboutUs() {
-  const {sm} = useWindowDimension();
+  const { sm } = useWindowDimension();
   return (
     <section className="abtus mb-5" id="aboutus">
       <TitleBox sectionName="About Us" />
@@ -42,15 +43,15 @@ export default function AboutUs() {
           fontSize: sm ? '1.5em' : '2em',
           lineHeight: sm ? '1.5em' : '1.5em',
         }}
-      >
+      >"
         <span className="text-esea-main">eSea</span> ada untuk mendekatkan
         nutrisi segar hasil laut kepada masyarakat Indonesia dengan penuh rasa
-        cinta.
+        cinta"
       </h2>
       <figure className="abtus__img-cover position-relative">
         <img className="abtus__img" src={abtUsImg} alt="about-us-img" />
       </figure>
-      <h4 className="kumbh-sans my-5 text-center underline pb-2 mx-auto">
+      <h4 className="kumbh-sans mt-5 mb-4  text-center underline pb-1 mx-auto">
         Misi Kami
       </h4>
       <div className="row w-100 mx-auto d-flex justify-content-center px-5">

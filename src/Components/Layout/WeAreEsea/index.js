@@ -2,7 +2,7 @@
 /* eslint-disable arrow-body-style */
 // eslint-disable-next-line arrow-body-style
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Carousel,
   CarouselItem,
@@ -11,10 +11,10 @@ import {
   CarouselCaption,
 } from 'reactstrap';
 import './index.scss';
-import crsl1 from '../../Assets/Photos/crsl1.jpg';
-import crsl2 from '../../Assets/Photos/crsl2.jpg';
-import crsl3 from '../../Assets/Photos/crsl3.jpg';
-import crsl4 from '../../Assets/Photos/crsl4.jpg';
+import crsl1 from '../../../Assets/Photos/crsl1.jpg';
+import crsl2 from '../../../Assets/Photos/crsl2.jpg';
+import crsl3 from '../../../Assets/Photos/crsl3.jpg';
+import crsl4 from '../../../Assets/Photos/crsl4.jpg';
 
 const items = [
   {

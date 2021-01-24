@@ -7,7 +7,9 @@ import {
   LinkedIn,
 } from '@material-ui/icons';
 // eslint-disable-next-line no-unused-vars
-import brandIcon from '../../Assets/Icons/eSeaIcon.png';
+import brandIcon from '../../../Assets/Icons/eSeaIcon.png';
+
+import "./index.scss";
 
 const IconStyle = {
   marginBottom: '15px',

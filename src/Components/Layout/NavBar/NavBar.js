@@ -10,24 +10,18 @@ import {
   NavLink,
   Button,
 } from 'reactstrap';
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 // Import store
-import useWindowDimension from '../../Helpers/useWindowDimension';
-
+import useWindowDimension from '../../../Helpers/useWindowDimension';
 // import icon
-import brandIcon from '../../Assets/Icons/eSeaIcon.png';
+import brandIcon from '../../../Assets/Icons/eSeaIcon.png';
+
 
 export default function NavbarClient() {
   const { md } = useWindowDimension();
   const [openNavbar, setOpenNavbar] = useState(false);
-  const history = useHistory();
-  const pushTo = (path, e) => {
-    e.preventDefault();
-
-    history.push(path);
-  };
 
   return (
     <Router>
@@ -44,7 +38,6 @@ export default function NavbarClient() {
               backgroundColor: '#fff',
               border: 'none',
             }}
-            onClick={(e) => pushTo('/', e)}
           >
             <img src={brandIcon} className="img-fluid" alt="logo" />
           </Button>
