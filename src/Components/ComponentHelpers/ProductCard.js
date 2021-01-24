@@ -1,26 +1,40 @@
 import React from 'react';
 import currencyFormat from '../../Helpers/currencyFormat';
+import useWindowDimension from '../../Helpers/useWindowDimension';
 
 export default function ProductCard({item}) {
+  const {sm} = useWindowDimension();
   const percentage = Math.round((item.sold / (item.sold + item.stocks)) * 100);
   return (
     <div className="px-1 pt-1 product-card-wrapper">
       <div className="product-card product-card-shadow">
-        <div className="w-100 product-image-wrapper">
+        <div className={`w-100 product-image-wrapper${sm ? '-sm' : ''}`}>
           <img
             src={process.env.REACT_APP_URL_BACKEND + item.picture}
             alt={`product-id-${item.id}`}
             className="product-image"
           />
         </div>
-        <div className="d-flex flex-column p-3 montserrat">
-          <text className="mb-2 font-bold font-1-em text-secondary product-name">
+        <div className={`d-flex flex-column montserrat ${sm ? 'p-2' : 'p-3'}`}>
+          <text
+            className={`font-bold font-1-em text-secondary product-name ${
+              sm ? 'mb-1' : 'mb-2'
+            }`}
+          >
             {item.productName}
           </text>
-          <text className="mb-2 font-bold font-1p2-em text-esea-main price">
+          <text
+            className={`font-bold font-1p2-em text-esea-main price ${
+              sm ? 'mb-1' : 'mb-2'
+            }`}
+          >
             {currencyFormat(item.price)}
           </text>
-          <text className="mb-2 font-bold font-p75-em text-secondary description">
+          <text
+            className={`font-bold font-p75-em text-secondary description ${
+              sm ? 'mb-1' : 'mb-2'
+            }`}
+          >
             {item.description}
           </text>
           <text className="font-p75-em font-bold text-secondary amount-sold">

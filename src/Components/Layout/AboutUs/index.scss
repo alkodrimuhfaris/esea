@@ -7,14 +7,15 @@
     }
 
     &__img-cover {
-        width: 100vw;
-        min-height: 250px;
+        width: 100%;
+        height: calc(100vw * 0.193);
         z-index: 1;
         overflow: hidden;
     }
 
     &__img-cover::before {
         position: absolute;
+        width: 100%;
         z-index: 10;
         content: "";
         height: 100%;
@@ -27,7 +28,7 @@
     }
 
     &__img {
-        width: 100vw;
+        width: 100%;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);

@@ -40,17 +40,19 @@ export default function AboutUs() {
       <h2
         className="abtus__title kumbh-sans text-center"
         style={{
-          fontSize: sm ? '1.5em' : '2em',
-          lineHeight: sm ? '1.5em' : '1.5em',
+          fontSize: sm ? '1.2em' : '2em',
+          lineHeight: sm ? '1.2em' : '1.5em',
         }}
       >
         "<span className="text-esea-main">eSea</span> ada untuk mendekatkan
         nutrisi segar hasil laut kepada masyarakat Indonesia dengan penuh rasa
         cinta"
       </h2>
-      <figure className="abtus__img-cover position-relative">
-        <img className="abtus__img" src={abtUsImg} alt="about-us-img" />
-      </figure>
+      <div className="w-100">
+        <figure className="abtus__img-cover position-relative">
+          <img className="abtus__img" src={abtUsImg} alt="about-us-img" />
+        </figure>
+      </div>
       <h4 className="kumbh-sans mt-5 mb-4  text-center underline pb-1 mx-auto">
         Misi Kami
       </h4>
