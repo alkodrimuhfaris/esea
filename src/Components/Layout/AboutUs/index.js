@@ -12,7 +12,7 @@ import abtUsCard1 from '../../../Assets/Photos/abtUsCard1.png';
 import abtUsCard2 from '../../../Assets/Photos/abtUsCard2.png';
 import abtUsCard3 from '../../../Assets/Photos/abtUsCard3.png';
 import useWindowDimension from '../../../Helpers/useWindowDimension';
-import "./index.scss";
+import './index.scss';
 
 const items = [
   {
@@ -33,7 +33,7 @@ const items = [
 ];
 
 export default function AboutUs() {
-  const { sm } = useWindowDimension();
+  const {sm} = useWindowDimension();
   return (
     <section className="abtus mb-5" id="aboutus">
       <TitleBox sectionName="About Us" />
@@ -43,8 +43,8 @@ export default function AboutUs() {
           fontSize: sm ? '1.5em' : '2em',
           lineHeight: sm ? '1.5em' : '1.5em',
         }}
-      >"
-        <span className="text-esea-main">eSea</span> ada untuk mendekatkan
+      >
+        "<span className="text-esea-main">eSea</span> ada untuk mendekatkan
         nutrisi segar hasil laut kepada masyarakat Indonesia dengan penuh rasa
         cinta"
       </h2>

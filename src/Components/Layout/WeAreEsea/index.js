@@ -2,7 +2,7 @@
 /* eslint-disable arrow-body-style */
 // eslint-disable-next-line arrow-body-style
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   Carousel,
   CarouselItem,

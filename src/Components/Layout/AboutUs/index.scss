@@ -7,7 +7,7 @@
     }
 
     &__img-cover {
-        width: 100%;
+        width: 100vw;
         min-height: 250px;
         z-index: 1;
         overflow: hidden;
@@ -17,8 +17,8 @@
         position: absolute;
         z-index: 10;
         content: "";
-        height: 105%;
-        top: -10;
+        height: 100%;
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
@@ -27,14 +27,12 @@
     }
 
     &__img {
-        width: 100%;
+        width: 100vw;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 0;
         position: absolute;
-        min-height: 150px;
-        max-height: 90vh;
     }
 
     &__card-img {
