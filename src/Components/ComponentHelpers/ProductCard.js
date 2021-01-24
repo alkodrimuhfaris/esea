@@ -5,10 +5,10 @@ export default function ProductCard({item}) {
   const percentage = Math.round((item.sold / (item.sold + item.stocks)) * 100);
   return (
     <div className="px-1 pt-1 product-card-wrapper">
-      <div className="product-card">
+      <div className="product-card product-card-shadow">
         <div className="w-100 product-image-wrapper">
           <img
-            src="https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg"
+            src={process.env.REACT_APP_URL_BACKEND + item.picture}
             alt={`product-id-${item.id}`}
             className="product-image"
           />

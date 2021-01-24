@@ -1,154 +1,111 @@
-/* eslint-disable no-console */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
-/* eslint-disable prettier/prettier */
 import React from 'react';
-import { Container, Button } from 'reactstrap';
+import {Container, Button, Spinner} from 'reactstrap';
 import {
   WidgetsOutlined,
   LocalMallOutlined,
   StoreMallDirectoryOutlined,
 } from '@material-ui/icons';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
+import {useSelector, useDispatch} from 'react-redux';
 import Carousel from 'react-multi-carousel';
 import useWindowDimension from '../../Helpers/useWindowDimension';
 import responsive from '../../Helpers/responsiveCarousel';
 import 'react-multi-carousel/lib/styles.css';
-import ProductCard from '../Components/ProductCard';
+import ProductCard from '../ComponentHelpers/ProductCard';
+import actions from '../../redux/actions/index';
 import TitleBox from '../TitleBox';
 
 export default function Products() {
-  const { md } = useWindowDimension();
+  const dispatch = useDispatch();
+  const {md} = useWindowDimension();
+  const categoriesData = useSelector((state) => state.getAllCategories.data);
+  const productsPageInfo = useSelector(
+    (state) => state.getAllProducts.pageInfo,
+  );
+  const categoriesPageInfo = useSelector(
+    (state) => state.getAllCategories.pageInfo,
+  );
+  const getCategoryDetails = useSelector((state) => state.getCategoryDetails);
+  const productData = useSelector((state) => state.getCategoryDetails.products);
   const [selected, setSelected] = React.useState(0);
-
-  React.useEffect(() => {
-    console.log(selected);
-  }, [selected]);
-
-  const iconDesc = [
+  const [iconDesc, setIconDesc] = React.useState([
     {
       name: 'Kategori',
-      count: 3,
+      count: 0,
       icon: (size = 30) => (
-        <WidgetsOutlined color="grey" style={{ fontSize: size }} />
+        <WidgetsOutlined color="grey" style={{fontSize: size}} />
       ),
     },
     {
       name: 'Produk',
-      count: 20,
+      count: 0,
       icon: (size = 30) => (
-        <LocalMallOutlined color="grey" style={{ fontSize: size }} />
+        <LocalMallOutlined color="grey" style={{fontSize: size}} />
       ),
     },
     {
       name: 'Mitra',
       count: 22,
       icon: (size = 30) => (
-        <StoreMallDirectoryOutlined color="grey" style={{ fontSize: size }} />
+        <StoreMallDirectoryOutlined color="grey" style={{fontSize: size}} />
       ),
     },
-  ];
+  ]);
+  const initialMount = React.useRef(true);
+  const [initialMountProducts, setInitialMountProducts] = React.useState(true);
+  const initialMountProducts2 = React.useRef(true);
 
-  const linkDesc = [
-    {
-      name: 'Ikan',
-      actions: (index) => {
-        setSelected(index);
-      },
-    },
-    {
-      name: 'Udang',
-      actions: (index) => {
-        setSelected(index);
-      },
-    },
-    {
-      name: 'Cumi',
-      actions: (index) => {
-        setSelected(index);
-      },
-    },
-  ];
+  React.useEffect(() => {
+    dispatch(actions.categoriesActions.getCategories());
+    dispatch(actions.productsActions.getCategories());
+  }, []);
 
-  const productData = [
-    {
-      id: 1,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 2,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 3,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 11,
-      sold: 91,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 4,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 5,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-    {
-      id: 6,
-      productName: 'Ikan Kerapu',
-      price: 20000,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis vestibulum lobortis. Proin a dui tempor, dapibus nulla et, sagittis sem. Maecenas sagittis sit amet felis sit amet malesuada. Phasellus et odio eu ligula viverra tempor sed sit amet nulla. Proin vulputate est augue, et dignissim arcu lobortis in. Suspendisse dolor est, interdum vel lobortis vel, lacinia quis lacus. Donec faucibus placerat turpis id tempus. Nunc ac ligula neque. Sed suscipit rhoncus mauris, ut sagittis justo tincidunt non. Integer scelerisque lectus sed lectus elementum finibus. Ut nec enim sed enim auctor sodales. Suspendisse eu quam blandit, convallis erat vel, pellentesque magna. Integer mauris nisl, tempus sed vulputate non, ullamcorper quis enim. Nulla facilisi. Vivamus gravida nisl tempus, pellentesque libero non, mattis diam.',
-      stocks: 100,
-      sold: 90,
-      picture:
-        'https://thumbs-prod.si-cdn.com/7UodV-s6j5aEVfrYwg5KQ26oBLY=/fit-in/1600x0/https://public-media.si-cdn.com/filer/d6/93/d6939718-4e41-44a8-a8f3-d13648d2bcd0/c3npbx.jpg',
-    },
-  ];
+  React.useEffect(() => {
+    if (initialMount.current) {
+      if (categoriesData.length) {
+        setSelected(categoriesData[0].id);
+        initialMount.current = false;
+      }
+    }
+  }, [categoriesData]);
 
-  // const pageInfo = {
-  //   count: 3,
-  //   pages: 4,
-  //   currentPage: 1,
-  //   dataPerPage: 3,
-  //   nextLink: null,
-  //   prefLink: null,
-  // };
+  React.useEffect(() => {
+    if (selected) {
+      dispatch(actions.categoriesActions.getCategoriesDetail(selected));
+    }
+  }, [selected]);
 
-  const LeftArrow = ({ onClick }) => (
+  React.useEffect(() => {
+    const newIconDesc = [...iconDesc];
+    if (
+      Object.keys(categoriesPageInfo).length ||
+      Object.keys(productsPageInfo).length
+    ) {
+      if (Object.keys(categoriesPageInfo).length) {
+        newIconDesc[0].count = categoriesPageInfo.count;
+      }
+      if (Object.keys(productsPageInfo).length) {
+        newIconDesc[1].count = productsPageInfo.count;
+      }
+      setIconDesc(newIconDesc);
+    }
+  }, [categoriesPageInfo, productsPageInfo]);
+
+  React.useEffect(() => {
+    if (initialMountProducts2.current && productData.length) {
+      setInitialMountProducts(false);
+    }
+  }, [productData]);
+
+  React.useEffect(() => {
+    if (!initialMountProducts2.current) {
+      setInitialMountProducts(getCategoryDetails.pending);
+    }
+  }, [getCategoryDetails.pending]);
+
+  const LeftArrow = ({onClick}) => (
     <Button
       onClick={() => onClick()}
       color="light"
@@ -158,7 +115,7 @@ export default function Products() {
     </Button>
   );
 
-  const RightArrow = ({ onClick }) => (
+  const RightArrow = ({onClick}) => (
     <Button
       onClick={() => onClick()}
       color="light"
@@ -168,8 +125,8 @@ export default function Products() {
     </Button>
   );
 
-  const CustomDot = ({ onClick, ...rest }) => {
-    const { active } = rest;
+  const CustomDot = ({onClick, ...rest}) => {
+    const {active} = rest;
     // const carouselItems = productData.map((item) => (
     //   <ProductCard item={item} />
     // ));
@@ -185,8 +142,9 @@ export default function Products() {
 
       <Button
         onClick={() => onClick()}
-        className={`dot-button mx-1 mb-1 ${active ? 'dot-active' : 'dot-inactive'
-          }`}
+        className={`dot-button mx-1 mb-1 ${
+          active ? 'dot-active' : 'dot-inactive'
+        }`}
       >
         &nbsp;
       </Button>
@@ -194,7 +152,7 @@ export default function Products() {
   };
 
   return (
-    <div className="parent mb-5" id="product">
+    <div className="parent mb-3" id="product">
       <div className="d-flex">
         <TitleBox sectionName="Our Products" />
       </div>
@@ -206,14 +164,16 @@ export default function Products() {
               {item.icon(!md ? 45 : 30)}
               <div className="d-flex flex-column ml-2">
                 <text
-                  className={`montserrat height-0 ${!md ? 'font-1p5-em' : 'font-1p2-em'
-                    }`}
+                  className={`montserrat height-0 ${
+                    !md ? 'font-1p5-em' : 'font-1p2-em'
+                  }`}
                 >
                   {item.count}
                 </text>
                 <text
-                  className={`montserrat height-0 ${!md ? 'font-p75-em' : 'font-p5-em'
-                    }`}
+                  className={`montserrat height-0 ${
+                    !md ? 'font-p75-em' : 'font-p5-em'
+                  }`}
                 >
                   {item.name}
                 </text>
@@ -223,21 +183,29 @@ export default function Products() {
         </div>
         {/* link for selecting categories */}
         <div className="d-flex justify-content-center align-items-center my-5">
-          {linkDesc.map((item, index) => (
+          {categoriesData.map((item, index) => (
             <Button
-              onClick={() => item.actions(index)}
-              className={`categories-btn ${index === selected ? 'btn-esea-main ' : 'btn-light '
-                } ${index === 0 ? '' : 'ml-3'}`}
+              onClick={() => setSelected(item.id)}
+              className={`categories-btn categories-btn-shadow ${
+                item.id === selected ? 'btn-esea-main ' : 'btn-light '
+              } ${index === 0 ? '' : 'ml-3'}`}
             >
               <text className={md ? 'font-1-em' : 'font-1p2-em'}>
-                {item.name}
+                {item.categoryName}
               </text>
             </Button>
           ))}
         </div>
         {/* container for product */}
         <div className="mx-auto carousel-wrapper">
-          {productData.length ? (
+          {getCategoryDetails.pending || initialMountProducts ? (
+            <div
+              className="d-flex justify-content-center align-items-center w-100"
+              style={{height: '10em'}}
+            >
+              <Spinner color="esea-main" />
+            </div>
+          ) : (
             <Carousel
               showDots
               responsive={responsive}
@@ -253,14 +221,14 @@ export default function Products() {
                 <ProductCard item={item} />
               ))}
             </Carousel>
-          ) : null}
+          )}
         </div>
         <div className="mb-3 d-flex order-now-btn justify-content-center">
           <Button
             className="font-bold btn-esea-main"
             onClick={(e) => {
               e.preventDefault();
-              window.open('http://google.com');
+              window.open('http://linktr.ee/eseaindonesia');
             }}
           >
             PESAN SEKARANG

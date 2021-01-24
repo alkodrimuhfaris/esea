@@ -5,16 +5,6 @@
 /* eslint-disable no-console */
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  Button,
-} from 'reactstrap';
 import './index.css';
 
 
@@ -37,7 +27,7 @@ export default function NavBar() {
   return (
     <nav className="sticky-top navbar navbar-expand-lg navbar-light bg-white">
       <div className="container-fluid">
-        <buton className="navbar__btn btn">
+        <buton style={{width: sm ? '20%' : '15%', padding: '0px', backgroundColor: 'rgba(0,0,0,0)'}} className="navbar__btn btn">
           <img src={brandIcon} className="img-fluid" alt="logo" />
         </buton>
         <button className="navbar-toggler" type="button" onClick={() => setOpenNavbar(!openNavbar)}>
