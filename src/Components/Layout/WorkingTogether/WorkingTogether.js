@@ -13,13 +13,13 @@ import {
 } from 'reactstrap';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
-import {useDispatch, useSelector} from 'react-redux';
-import leftBackground from '../../Assets/Photos/leftBackground.png';
-import rightBackground from '../../Assets/Photos/rightBackground.png';
-import useWindowDimensions from '../../Helpers/useWindowDimension';
-import actions from '../../redux/actions';
-import ModalLoading from '../ComponentHelpers/ModalLoading';
-import ModalConfirm from '../ComponentHelpers/ModalConfirm';
+import { useDispatch, useSelector } from 'react-redux';
+import leftBackground from '../../../Assets/Photos/leftBackground.png';
+import rightBackground from '../../../Assets/Photos/rightBackground.png';
+import useWindowDimensions from '../../../Helpers/useWindowDimension';
+import actions from '../../../redux/actions';
+import ModalLoading from '../../ComponentHelpers/ModalLoading';
+import ModalConfirm from '../../ComponentHelpers/ModalConfirm';
 
 const schema = Yup.object().shape({
   name: Yup.string()
@@ -48,11 +48,11 @@ const schema = Yup.object().shape({
 export default function WorkingTogether() {
   const dispatch = useDispatch();
   const postRegistration = useSelector((state) => state.postRegistration);
-  const {width, xs, sm, md, lg, xl} = useWindowDimensions();
+  const { width, xs, sm, md, lg, xl } = useWindowDimensions();
   const [sideLength, setSideLength] = React.useState(0);
   const [openNotif, setOpenNotif] = React.useState(false);
   const [propsNotif, setPropsNotif] = React.useState({});
-  const [resettingForm, setResettingForm] = React.useState({reset: () => {}});
+  const [resettingForm, setResettingForm] = React.useState({ reset: () => { } });
 
   React.useEffect(() => {
     let side = sideLength;
@@ -153,9 +153,9 @@ export default function WorkingTogether() {
           initialValues={initialValue}
           validationSchema={schema}
           validateOnBlur
-          onSubmit={(values, {resetForm}) => {
+          onSubmit={(values, { resetForm }) => {
             submit(values);
-            setResettingForm({reset: resetForm});
+            setResettingForm({ reset: resetForm });
           }}
         >
           {(props) => {

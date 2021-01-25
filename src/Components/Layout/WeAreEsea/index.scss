@@ -24,3 +24,21 @@
     width: 20px;
     border-radius: 50%;
 }
+
+
+@media (min-width: 576px) {
+    .carousel-indicators li {
+        height: 1em;
+        width: 1em;
+        border-radius: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel-indicators li {
+        height: 1.25em;
+        width: 1.25em;
+        border-radius: 50%;
+    }
+
+}

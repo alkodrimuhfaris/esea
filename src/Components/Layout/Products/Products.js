@@ -1,25 +1,26 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import {Container, Button, Spinner} from 'reactstrap';
+import { Container, Button, Spinner } from 'reactstrap';
 import {
   WidgetsOutlined,
   LocalMallOutlined,
   StoreMallDirectoryOutlined,
 } from '@material-ui/icons';
-import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
-import {useSelector, useDispatch} from 'react-redux';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useSelector, useDispatch } from 'react-redux';
 import Carousel from 'react-multi-carousel';
-import useWindowDimension from '../../Helpers/useWindowDimension';
-import responsive from '../../Helpers/responsiveCarousel';
+import useWindowDimension from '../../../Helpers/useWindowDimension';
+import responsive from '../../../Helpers/responsiveCarousel';
 import 'react-multi-carousel/lib/styles.css';
-import ProductCard from '../ComponentHelpers/ProductCard';
-import actions from '../../redux/actions/index';
-import TitleBox from '../TitleBox';
+import ProductCard from '../../ComponentHelpers/ProductCard';
+import actions from '../../../redux/actions/index';
+import TitleBox from '../../ComponentHelpers/TitleBox';
 
 export default function Products() {
   const dispatch = useDispatch();
-  const {md} = useWindowDimension();
+  const { md } = useWindowDimension();
   const categoriesData = useSelector((state) => state.getAllCategories.data);
   const productsPageInfo = useSelector(
     (state) => state.getAllProducts.pageInfo,
@@ -35,21 +36,21 @@ export default function Products() {
       name: 'Kategori',
       count: 0,
       icon: (size = 30) => (
-        <WidgetsOutlined color="grey" style={{fontSize: size}} />
+        <WidgetsOutlined color="grey" style={{ fontSize: size }} />
       ),
     },
     {
       name: 'Produk',
       count: 0,
       icon: (size = 30) => (
-        <LocalMallOutlined color="grey" style={{fontSize: size}} />
+        <LocalMallOutlined color="grey" style={{ fontSize: size }} />
       ),
     },
     {
       name: 'Mitra',
       count: 22,
       icon: (size = 30) => (
-        <StoreMallDirectoryOutlined color="grey" style={{fontSize: size}} />
+        <StoreMallDirectoryOutlined color="grey" style={{ fontSize: size }} />
       ),
     },
   ]);
@@ -105,7 +106,7 @@ export default function Products() {
     }
   }, [getCategoryDetails.pending]);
 
-  const LeftArrow = ({onClick}) => (
+  const LeftArrow = ({ onClick }) => (
     <Button
       onClick={() => onClick()}
       color="light"
@@ -115,7 +116,7 @@ export default function Products() {
     </Button>
   );
 
-  const RightArrow = ({onClick}) => (
+  const RightArrow = ({ onClick }) => (
     <Button
       onClick={() => onClick()}
       color="light"
@@ -125,8 +126,8 @@ export default function Products() {
     </Button>
   );
 
-  const CustomDot = ({onClick, ...rest}) => {
-    const {active} = rest;
+  const CustomDot = ({ onClick, ...rest }) => {
+    const { active } = rest;
     // const carouselItems = productData.map((item) => (
     //   <ProductCard item={item} />
     // ));
@@ -142,9 +143,8 @@ export default function Products() {
 
       <Button
         onClick={() => onClick()}
-        className={`dot-button mx-1 mb-1 ${
-          active ? 'dot-active' : 'dot-inactive'
-        }`}
+        className={`dot-button mx-1 mb-1 ${active ? 'dot-active' : 'dot-inactive'
+          }`}
       >
         &nbsp;
       </Button>
@@ -164,16 +164,14 @@ export default function Products() {
               {item.icon(!md ? 45 : 30)}
               <div className="d-flex flex-column ml-2">
                 <text
-                  className={`montserrat height-0 ${
-                    !md ? 'font-1p5-em' : 'font-1p2-em'
-                  }`}
+                  className={`montserrat height-0 ${!md ? 'font-1p5-em' : 'font-1p2-em'
+                    }`}
                 >
                   {item.count}
                 </text>
                 <text
-                  className={`montserrat height-0 ${
-                    !md ? 'font-p75-em' : 'font-p5-em'
-                  }`}
+                  className={`montserrat height-0 ${!md ? 'font-p75-em' : 'font-p5-em'
+                    }`}
                 >
                   {item.name}
                 </text>
@@ -186,9 +184,8 @@ export default function Products() {
           {categoriesData.map((item, index) => (
             <Button
               onClick={() => setSelected(item.id)}
-              className={`categories-btn categories-btn-shadow ${
-                item.id === selected ? 'btn-esea-main ' : 'btn-light '
-              } ${index === 0 ? '' : 'ml-3'}`}
+              className={`categories-btn categories-btn-shadow ${item.id === selected ? 'btn-esea-main ' : 'btn-light '
+                } ${index === 0 ? '' : 'ml-3'}`}
             >
               <text className={md ? 'font-1-em' : 'font-1p2-em'}>
                 {item.categoryName}
@@ -201,27 +198,27 @@ export default function Products() {
           {getCategoryDetails.pending || initialMountProducts ? (
             <div
               className="d-flex justify-content-center align-items-center w-100"
-              style={{height: '10em'}}
+              style={{ height: '10em' }}
             >
               <Spinner color="esea-main" />
             </div>
           ) : (
-            <Carousel
-              showDots
-              responsive={responsive}
-              keyBoardControl
-              customTransition="all .5"
-              transitionDuration={500}
-              removeArrowOnDeviceType="mobile"
-              customDot={<CustomDot />}
-              customLeftArrow={<LeftArrow />}
-              customRightArrow={<RightArrow />}
-            >
-              {productData.map((item) => (
-                <ProductCard item={item} />
-              ))}
-            </Carousel>
-          )}
+              <Carousel
+                showDots
+                responsive={responsive}
+                keyBoardControl
+                customTransition="all .5"
+                transitionDuration={500}
+                removeArrowOnDeviceType="mobile"
+                customDot={<CustomDot />}
+                customLeftArrow={<LeftArrow />}
+                customRightArrow={<RightArrow />}
+              >
+                {productData.map((item) => (
+                  <ProductCard item={item} />
+                ))}
+              </Carousel>
+            )}
         </div>
         <div className="mb-3 d-flex order-now-btn justify-content-center">
           <Button
