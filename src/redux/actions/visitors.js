@@ -9,11 +9,11 @@ export default {
       qs.stringify({...ipData, startSession}),
     ),
   }),
-  endSession: (ipData, endSession, id, uuid) => ({
+  endSession: (ipData, endSession) => ({
     type: 'END_SESSION',
     payload: services().post(
       'visitors/end',
-      qs.stringify({...ipData, endSession, id, uuid}),
+      qs.stringify({...ipData, endSession}),
     ),
   }),
 };

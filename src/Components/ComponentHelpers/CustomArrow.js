@@ -9,9 +9,7 @@ export default function CustomArrow({onClick, direction}) {
     <Button
       onClick={() => onClick()}
       color="light"
-      className={`mx-auto position-absolute p-0 d-flex justify-content-center align-items-center arrow-btn-${direction} arrow-width${
-        sm ? '-sm' : ''
-      }`}
+      className={`mx-auto position-absolute p-0 d-flex justify-content-center align-items-center arrow-btn-${direction} arrow-width`}
     >
       {direction === 'right' ? (
         <FiChevronRight size={sm ? '1em' : '1.5em'} />

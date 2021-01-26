@@ -8,7 +8,7 @@ export default function ProductCard({item}) {
   return (
     <div className="px-1 pt-1 product-card-wrapper">
       <div className="product-card product-card-shadow">
-        <div className={`w-100 product-image-wrapper${sm ? '-sm' : ''}`}>
+        <div className="w-100 product-image-wrapper">
           <img
             src={process.env.REACT_APP_URL_BACKEND + item.picture}
             alt={`product-id-${item.id}`}
