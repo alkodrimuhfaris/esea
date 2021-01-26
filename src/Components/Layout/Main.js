@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux';
 
 // import component
 import {io} from 'socket.io-client';
+import moment from 'moment';
 import NavBar from './NavBar/NavBar';
 import Products from './Products/Products';
 import WorkingTogether from './WorkingTogether/WorkingTogether';
@@ -28,6 +29,9 @@ export default function Main() {
     if (Object.keys(ipData).length) {
       const socket = io(process.env.REACT_APP_URL_BACKEND);
       socket.on('connect', () => {
+        let {startSession} = ipData;
+        startSession = moment(startSession).valueOf();
+        Object.assign(ipData, {startSession});
         socket.emit('startSession', ipData);
       });
     }
